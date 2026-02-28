@@ -1,0 +1,48 @@
+[
+  {
+    "id": "355e075e-7133-4624-8d72-93ba1bc3ae15",
+    "student_id": "be638d49-4b3d-4632-a913-1573519e20f9",
+    "student_name": "Alex Johnson",
+    "student_email": "alex@university.edu",
+    "category": "Water Leakage",
+    "description": "There is a water leak near the ceiling in the lab that is causing damage to equipment.",
+    "building": "Block A",
+    "room_number": "101",
+    "image_url": null,
+    "status": "In Progress",
+    "assigned_to": "John Smith",
+    "comments": [
+      {
+        "id": "5333b1c3-8839-4558-8aaf-793d03192c36",
+        "author": "Administrator",
+        "text": "We have dispatched the plumbing team. Expected resolution: 2 hours.",
+        "created_at": "2026-02-28T04:39:18.832326+00:00"
+      }
+    ],
+    "created_at": "2026-02-28T04:39:00.386338+00:00",
+    "updated_at": "2026-02-28T04:39:18.832326+00:00"
+  },
+  {
+    "id": "3587724d-3bce-4a5d-aad9-bf4b686589b2",
+    "student_id": "be638d49-4b3d-4632-a913-1573519e20f9",
+    "student_name": "Alex Johnson",
+    "student_email": "alex@university.edu",
+    "category": "Water Leakage",
+    "description": "There is a water leak near the ceiling in the lab causing damage to equipment.",
+    "building": "Block A",
+    "room_number": "101",
+    "image_url": null,
+    "status": "In Progress",
+    "assigned_to": "John Smith",
+    "comments": [
+      {
+        "id": "4bc7f08c-edc1-4c5d-a7df-72d3ee56849f",
+        "author": "Administrator",
+        "text": "Plumbing team dispatched. ETA 2 hours.",
+        "created_at": "2026-02-28T04:45:37.088566+00:00"
+      }
+    ],
+    "created_at": "2026-02-28T04:43:53.169942+00:00",
+    "updated_at": "2026-02-28T04:45:37.088566+00:00"
+  }
+]

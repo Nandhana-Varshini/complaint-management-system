@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard – SCMS</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div class="layout">
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon" style="font-size:.9rem;font-weight:800;">SCMS</div>
+                <h2>Student Portal</h2>
+                <p>Complaint Management</p>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Menu</div>
+                <div class="nav-item" data-section="my-complaints">
+                    <span class="nav-icon">&#9776;</span> My Complaints
+                </div>
+                <div class="nav-item" data-section="submit">
+                    <span class="nav-icon">+</span> Submit Complaint
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar"><span class="user-avatar-letter">S</span></div>
+                    <div>
+                        <h4 class="user-name">Student</h4>
+                        <p class="user-email">loading...</p>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logout-btn">Sign Out</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="topbar">
+                <button class="hamburger" id="hamburger">&#9776;</button>
+                <div>
+                    <h1 id="section-title">My Complaints</h1>
+                    <p id="section-subtitle">Track the status of your submitted complaints</p>
+                </div>
+                <!-- Notification Bell -->
+                <div class="notif-wrapper">
+                    <button class="notif-btn" id="notif-bell" aria-label="Notifications">
+                        <span class="bell-icon">&#9993;</span>
+                        <span class="notif-badge" id="notif-badge" style="display:none;"></span>
+                    </button>
+                    <div class="notif-panel" id="notif-panel">
+                        <div class="notif-panel-header">Notifications</div>
+                        <div id="notif-list">
+                            <p style="padding:16px;color:var(--text-muted);font-size:.85rem;">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Complaints Section -->
+            <section class="section active" id="section-my-complaints">
+                <!-- Status filter tabs -->
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all" onclick="setFilter('all')">All</button>
+                    <button class="filter-tab" data-filter="Pending" onclick="setFilter('Pending')">Pending</button>
+                    <button class="filter-tab" data-filter="In Progress" onclick="setFilter('In Progress')">In
+                        Progress</button>
+                    <button class="filter-tab" data-filter="Resolved" onclick="setFilter('Resolved')">Resolved</button>
+                    <button class="btn btn-primary btn-sm" style="margin-left:auto;" onclick="loadSection('submit')">+
+                        New Complaint</button>
+                </div>
+                <div class="card" style="margin-top:16px;">
+                    <div id="complaints-list">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Submit Complaint Section -->
+            <section class="section" id="section-submit" style="display:none;">
+                <div class="card">
+                    <h2 style="margin-bottom:6px;">Submit a New Complaint</h2>
+                    <p style="color:var(--text-muted);font-size:.875rem;margin-bottom:24px;">Describe the issue and our
+                        maintenance team will be assigned to resolve it.</p>
+                    <form id="submit-form">
+                        <div class="form-row">
+                            <div class="form-group" style="margin:0;">
+                                <label class="form-label">Category <span>*</span></label>
+                                <select id="category" class="form-control" required>
+                                    <option value="">-- Select Category --</option>
+                                    <option value="Water Leakage">Water Leakage</option>
+                                    <option value="Electricity">Electricity</option>
+                                    <option value="Classroom Maintenance">Classroom Maintenance</option>
+                                    <option value="Internet">Internet</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin:0;">
+                                <label class="form-label">Building <span>*</span></label>
+                                <select id="building" class="form-control" required>
+                                    <option value="">-- Select Building --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Room Number <span>*</span></label>
+                            <input type="text" id="room_number" class="form-control"
+                                placeholder="e.g. 101, Lab 3, Ground Floor" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Description <span>*</span></label>
+                            <textarea id="description" class="form-control"
+                                placeholder="Describe the issue in detail..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Attach Image <span
+                                    style="color:var(--text-muted);font-weight:400;">(optional)</span></label>
+                            <div class="upload-area">
+                                <input type="file" id="image-input" accept="image/*" />
+                                <div class="upload-icon" style="font-size:1.2rem;color:var(--text-muted);">[ + ]</div>
+                                <p><strong>Click to upload</strong> or drag and drop</p>
+                                <p style="font-size:.75rem;margin-top:4px;">PNG, JPG, WEBP — max 10 MB</p>
+                            </div>
+                            <div class="image-preview" id="image-preview"></div>
+                        </div>
+                        <div style="display:flex;gap:12px;">
+                            <button type="submit" class="btn btn-primary">Submit Complaint</button>
+                            <button type="button" class="btn btn-secondary"
+                                onclick="loadSection('my-complaints')">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Complaint Detail Modal -->
+    <div class="modal-overlay" id="complaint-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Complaint Details</h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/student.js"></script>
+</body>
+
+</html>

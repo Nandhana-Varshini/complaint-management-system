@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SCMS – Student Complaint Management System</title>
+  <meta name="description" content="A platform for students to submit and track campus maintenance complaints." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .feature-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, .18);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: .8rem;
+      color: #fff;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="landing-page">
+    <div class="landing-content">
+      <div class="landing-logo" style="font-size:1.5rem;font-weight:800;letter-spacing:-.02em;">SCMS</div>
+      <h1>Campus Complaint Portal</h1>
+      <p>Report and track maintenance issues across campus — fast, easy, and transparent.</p>
+      <div class="feature-pills">
+        <span class="pill">Water Leakage</span>
+        <span class="pill">Electricity</span>
+        <span class="pill">Classroom Maintenance</span>
+        <span class="pill">Internet</span>
+        <span class="pill">Other Issues</span>
+      </div>
+      <div class="portal-cards">
+        <div class="portal-card" onclick="window.location.href='student-auth.html'">
+          <div class="portal-card-icon" style="font-size:1.5rem;font-weight:700;">S</div>
+          <h3>Student Portal</h3>
+          <p>Submit and track your complaints</p>
+        </div>
+        <div class="portal-card" onclick="window.location.href='admin-login.html'">
+          <div class="portal-card-icon" style="font-size:1.5rem;font-weight:700;">A</div>
+          <h3>Admin Portal</h3>
+          <p>Manage and resolve complaints</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

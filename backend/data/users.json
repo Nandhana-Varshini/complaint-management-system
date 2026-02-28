@@ -1,0 +1,10 @@
+[
+  {
+    "id": "be638d49-4b3d-4632-a913-1573519e20f9",
+    "name": "Alex Johnson",
+    "email": "alex@university.edu",
+    "student_id": "STU-2026-001",
+    "password": "$2b$12$r4peSOow3/9/aWqyyvxqDO1ggZ/xLqt.AL8Q2nZlvPcTz8UVfQIxW",
+    "role": "student"
+  }
+]

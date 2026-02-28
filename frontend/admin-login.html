@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login – SCMS</title>
+    <meta name="description" content="Administrator login for the Campus Complaint Management System." />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div class="auth-page">
+        <div class="auth-card">
+            <div class="auth-header" style="background:linear-gradient(135deg,#1e1b4b,#4f46e5);">
+                <div class="auth-logo" style="font-size:1.2rem;font-weight:800;">A</div>
+                <h1>Admin Portal</h1>
+                <p>Sign in with your administrator credentials</p>
+            </div>
+            <div class="auth-body">
+                <div
+                    style="background:var(--primary-light);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:20px;font-size:.825rem;color:var(--primary-dark);">
+                    Demo credentials &mdash; Username: <strong>admin</strong> &nbsp;|&nbsp; Password:
+                    <strong>admin123</strong>
+                </div>
+
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label class="form-label">Username <span>*</span></label>
+                        <input type="text" id="admin-username" class="form-control" placeholder="admin" required
+                            value="admin" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password <span>*</span></label>
+                        <input type="password" id="admin-password" class="form-control"
+                            placeholder="Enter admin password" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary"
+                        style="width:100%;background:linear-gradient(135deg,#1e1b4b,#4f46e5);">
+                        Sign In
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <a href="index.html">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        (function () {
+            const u = getUser();
+            if (u && u.role === "admin") window.location.href = "admin-dashboard.html";
+        })();
+
+        document.getElementById("admin-login-form").addEventListener("submit", async e => {
+            e.preventDefault();
+            const btn = e.target.querySelector("button");
+            btn.disabled = true; btn.textContent = "Signing in...";
+            try {
+                const data = await apiFetch("/api/auth/admin/login", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        username: document.getElementById("admin-username").value,
+                        password: document.getElementById("admin-password").value,
+                    }),
+                });
+                data.user.role = "admin";
+                setAuth(data.token, data.user);
+                window.location.href = "admin-dashboard.html";
+            } catch (err) {
+                showToast(err.message, "error");
+                btn.disabled = false; btn.textContent = "Sign In";
+            }
+        });
+    </script>
+</body>
+
+</html>
